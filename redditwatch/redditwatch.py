@@ -30,65 +30,73 @@ class redditwatch(commands.Cog):
 
     async def setup_reddit_client(self):
         await self.bot.wait_until_ready()
-        
-        token = await self.bot.get_shared_api_tokens("redditpost")
-        try:
-            self.client = asyncpraw.Reddit(
-                client_id=token.get("clientid", None),
-                client_secret=token.get("clientsecret", None),
-                user_agent=f"{self.bot.user.name} Discord Bot",
-            )
-
-        except Exception as exc:
-            log.error("Exception in init: ", exc_info=exc)
-            await self.bot.send_to_owners(
-                "An exception occured in the authenthication. TBC Error redditwatch."
-            )
 
         # Get Reddit API credentials from config
         client_id = await self.config.client_id()
         client_secret = await self.config.client_secret()
         user_agent = await self.config.user_agent()
 
+        # Check if credentials are set
+        if not client_id or not client_secret or not user_agent:
+            print("Reddit API credentials not set. Use the setredditapi command to set them.")
+            return
+
         # Initialize Reddit client
         self.reddit = asyncpraw.Reddit(client_id=client_id,
                                   client_secret=client_secret,
                                   user_agent=user_agent)
 
+        # Close the client session
+        await self.reddit.close()
+
     async def watch_comments(self):
         await self.bot.wait_until_ready()
 
+        # Get the guild ID from the configuration
+        guild_id = await self.config.guild_id()
+
         while not self.bot.is_closed():
-            # Get config values
-            guild = self.bot.get_guild(self.config.guild_id)
+            guild = self.bot.get_guild(guild_id)
+            if not guild:
+                print("Guild not found. Make sure the guild ID is set correctly.")
+                return
+
             reddit_post_url = await self.config.guild(guild).reddit_post_url()
             discord_channel_id = await self.config.guild(guild).discord_channel_id()
             last_checked_timestamp = await self.config.guild(guild).last_checked_timestamp()
 
-            # Get comments from the Reddit post
-            post = self.reddit.submission(url=reddit_post_url)
-            post.comments.replace_more(limit=None)
-            comments = post.comments.list()
+            # Initialize a new Reddit client for each iteration to avoid unclosed session errors
+            async with asyncpraw.Reddit(client_id=await self.config.client_id(),
+                                         client_secret=await self.config.client_secret(),
+                                         user_agent=await self.config.user_agent()) as reddit:
 
-            # Check for new comments
-            for comment in comments:
-                if comment.created_utc > last_checked_timestamp:
-                    # Post comment to Discord
-                    channel = self.bot.get_channel(discord_channel_id)
-                    await channel.send(f'New Comment: {comment.body}')
+                # Get comments from the Reddit post
+                post = reddit.submission(url=reddit_post_url)
+                post.comments.replace_more(limit=None)
+                comments = post.comments.list()
 
-                    # Update last_checked_timestamp
-                    await self.config.guild(guild).last_checked_timestamp.set(comment.created_utc)
+                # Check for new comments
+                for comment in comments:
+                    if comment.created_utc > last_checked_timestamp:
+                        # Log the new comment
+                        print(f"New Comment: {comment.body}")
+
+                        # Post comment to Discord
+                        channel = self.bot.get_channel(discord_channel_id)
+                        await channel.send(f'New Comment: {comment.body}')
+
+                        # Update last_checked_timestamp
+                        await self.config.guild(guild).last_checked_timestamp.set(comment.created_utc)
 
             # Wait for some time before checking again (e.g., 30 seconds)
             await asyncio.sleep(30)
 
     @commands.group()
-    async def redditwatcher(self, ctx):
+    async def redditwatch(self, ctx):
         """redditwatch commands."""
         pass
 
-    @redditwatcher.command()
+    @redditwatch.command()
     @checks.is_owner()
     async def setredditapi(self, ctx, client_id: str, client_secret: str, user_agent: str):
         """Set the Reddit API credentials."""
@@ -97,7 +105,7 @@ class redditwatch(commands.Cog):
         await self.config.user_agent.set(user_agent)
         await ctx.send("Reddit API credentials set successfully.")
 
-    @redditwatcher.command()
+    @redditwatch.command()
     async def setconfig(self, ctx, reddit_post_url: str, discord_channel_id: int):
         """Set the Reddit post URL and Discord channel ID for watching."""
         await self.config.guild(ctx.guild).reddit_post_url.set(reddit_post_url)
