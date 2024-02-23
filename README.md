@@ -6,5 +6,5 @@
 ---
 | Name          | Status/Version   | Description (Click to see full status)                                                                                                                                                            | Authors                                  |
 |---------------|------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| redditwatch   | 0.0.1            | <details><summary>Gets new comments on a specified reddit post.</summary></details>                                                                                                               | Dendo                                    |
+| redditwatch   | 0.0.1            | Gets new comments on a specified reddit post.                                                                                                                                                     | Dendo                                    |
 ---
