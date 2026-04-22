@@ -6,5 +6,5 @@
 ---
 | Name          | Status                                | Version          | Description                                                                                                                                                           | Authors                                  |
 |---------------|---------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| redditwatch   | Early Development (Non-functional)    | 0.0.1            | Gets new comments on a specified reddit post.                                                                                                                         | Dendo                                    |
+| SunoCog   | InitialRelease (Non-functional)    | 0.0.1            | Adds suno [p]play functionality to redbot.                                                                                                                         | d3nd0                                    |
 ---
