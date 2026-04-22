@@ -3,8 +3,23 @@
     "Reece"
   ],
   "name": "SunoCog",
-  "short": "Queue Suno share links into Red Audio.",
-  "description": "A Red cog repository containing SunoCog, which resolves public Suno song links and queues them into the core Audio cog.",
-  "install_msg": "Load `audio` first, then load `sunocog`. You can use `[p]play <share_url>` for Suno links, or `[p]suno <share_url>` as a fallback.",
-  "hidden": false
+  "short": "Play public Suno songs through Red Audio.",
+  "description": "Resolves public Suno song links and queues the extracted MP3 into Red's core Audio cog.",
+  "install_msg": "After loading both `audio` and `sunocog`, you can use `[p]play <share_url>` for Suno links or `[p]suno <share_url>` as a fallback.",
+  "end_user_data_statement": "This cog does not persistently store personal data. It only fetches publicly accessible Suno song metadata at command time.",
+  "requirements": [],
+  "tags": [
+    "audio",
+    "music",
+    "suno"
+  ],
+  "min_bot_version": "3.5.24",
+  "min_python_version": [
+    3,
+    8,
+    0
+  ],
+  "hidden": false,
+  "disabled": false,
+  "type": "COG"
 }
