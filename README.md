@@ -6,5 +6,5 @@
 ---
 | Name          | Status                                | Version          | Description                                                                                                                                                           | Authors                                  |
 |---------------|---------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| SunoCog   | Initial Release    | 0.0.1            | Adds suno [p]play https://suno.com/s/xxxxxxxxxxx functionality to redbot.                                                                                                                         | d3nd0                                    |
+| SunoCog   | Initial Release    | 0.0.1            | After loading both 'audio' and 'sunocog', you can use '[p]play <share_url>' to play Suno songs.                                                                                                                         | d3nd0                                    |
 ---
