@@ -6,5 +6,5 @@
 ---
 | Name          | Status                                | Version          | Description                                                                                                                                                           | Authors                                  |
 |---------------|---------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| SunoCog   | Initial Release    | 0.0.1            | Adds suno [p]play functionality to redbot.                                                                                                                         | d3nd0                                    |
+| SunoCog   | Initial Release    | 0.0.1            | Adds suno [p]play https://suno.com/s/xxxxxxxxxxx functionality to redbot.                                                                                                                         | d3nd0                                    |
 ---
