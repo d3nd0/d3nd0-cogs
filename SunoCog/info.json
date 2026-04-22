@@ -1,0 +1,10 @@
+{
+  "author": [
+    "Reece"
+  ],
+  "name": "SunoCog",
+  "short": "Queue Suno share links into Red Audio.",
+  "description": "A Red cog repository containing SunoCog, which resolves public Suno song links and queues them into the core Audio cog.",
+  "install_msg": "Load `audio` first, then load `sunocog`. You can use `[p]play <share_url>` for Suno links, or `[p]suno <share_url>` as a fallback.",
+  "hidden": false
+}
