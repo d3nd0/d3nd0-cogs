@@ -1,0 +1,24 @@
+{
+    "author" : [
+        "d3nd0"
+    ],
+    "description" : "Cogs I've tried to make when a personal need has arisen.",
+    "disabled" : false,
+    "end_user_data_statement" : "This cog does not retain or permanently store any information or metadata related to users.",
+    "hidden" : false,
+    "install_msg" : "Any issues, submit a report on the repo :)",
+    "max_bot_version" : "0.0.0",
+    "min_bot_version" : "3.5.0",
+    "min_python_version" : [],
+    "name" : "d3nd0-cogs",
+    "permissions" : [],
+    "required_cogs" : {},
+    "requirements" : [],
+    "short" : "Random cogs.",
+    "tags" : [
+        "audio",
+        "music",
+        "voice"
+    ],
+    "type" : "COG"
+}
