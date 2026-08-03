@@ -6,5 +6,5 @@
 ---
 | Name          | Status                                | Version          | Description                                                                                                                                                           | Authors                                  |
 |---------------|---------------------------------------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| redditwatch   | Early Development (Non-functional)    | 0.0.1            | Gets new comments on a specified reddit post.                                                                                                                         | Dendo                                    |
+| SunoCog   | Initial Release    | 0.0.1            | After loading both 'audio' and 'sunocog', you can use '[p]play <share_url>' to play Suno songs.                                                                                                                         | d3nd0                                    |
 ---
